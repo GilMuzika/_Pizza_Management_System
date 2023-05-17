@@ -30,8 +30,6 @@ public class Employee {
     @Getter
     private PizzaSuprize _surprise;
 
-    private String _rankGiver = "at birth";
-
     public Employee(String _id, String _firstName, String _lastName, String _address, String phoneNumber) throws Exception {
         this._id = _id;
         this._firstName = _firstName;
@@ -46,10 +44,10 @@ public class Employee {
     public void setRank(Class<?> caller) throws Exception {
         StackWalker instance = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
         Class<?> callerClass = instance.getCallerClass();
-        if(!callerClass.getName().equals(PizzaStore.class.getName()))
+        if(!callerClass.equals(PizzaStore.class))
             throw new RuntimeException("Only a pizza store can set an employee rank");
 
-        _rankGiver = "by " + caller.getSimpleName();
+        this._rank._rankGiver = "by " + caller.getSimpleName();
         Random r = new Random();
         this._rank._actualRank = r.nextInt(1, 100);
         this._rank._rankValid = true;
@@ -85,6 +83,7 @@ public class Employee {
         @Getter
         @Setter
         private boolean _rankValid;
+        private String _rankGiver = "at birth";
 
         public EmployeeRank() {
             this._actualRank = 1;

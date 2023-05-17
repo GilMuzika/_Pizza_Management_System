@@ -43,12 +43,16 @@ public class Main {
         System.out.printf("Pizza Dominos Calculate Ranks:  %s\n" ,pizzaDominos.calculateRank());
         System.out.println();
 
-        pizzaHut.calculateRangedRank(10);
-        pizzaDominos.calculateRangedRank(20);
+        pizzaHut.calculateRangedRank(100);
+        pizzaDominos.calculateRangedRank(200);
         for(Employee emlpyee : employees) {
             System.out.println(emlpyee.get_rank());
         }
         Employee e = generator.getRandomEmployee();
+        System.out.println("-------------------------------------");
         System.out.println(e.get_rank());
+        pizzaDominos.hireEmployee(e);
+        System.out.println(e.get_rank());
+
     }
 }

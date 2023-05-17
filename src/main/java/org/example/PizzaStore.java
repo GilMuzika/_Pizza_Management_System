@@ -2,6 +2,7 @@ package org.example;
 
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +69,9 @@ public abstract class PizzaStore {
 
     public void calculateRangedRank(int range) {
         for(Employee one : _storeEmployees) {
-           LocalDateTime rankingTime = one.get_rank().get_rankingTime();
-           int currentDayOfyear = LocalDateTime.now().getDayOfYear();
-           int employeeRankingDayOfyear = rankingTime.getDayOfYear();
-           if(currentDayOfyear - employeeRankingDayOfyear > range)
+           long rankingDay = one.get_rank().get_rankingTime().toLocalDate().toEpochDay();
+           long currentDay = LocalDate.now().toEpochDay();
+           if(currentDay - rankingDay > range) //inplicit type conversion
                one.get_rank().set_rankValid(false);
            else
                one.get_rank().set_rankValid(true);
