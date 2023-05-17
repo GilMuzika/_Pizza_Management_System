@@ -2,7 +2,6 @@ package org.example;
 
 import auxiliaryClasses.EmployeeGenerator;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Main {
@@ -26,11 +25,11 @@ public class Main {
             employees.add(employee2);
         }
 
-        pizzaDominos.giveSurpriseToTheBest(1);
+        pizzaDominos.giveSurpriseToTheBest(300);
 
         for(Employee one : employees) {
             if(one.get_surprise() != null) {
-                one.get_surprise().activateSurprize();
+                one.get_surprise().activateSurprise();
             }
         }
 
